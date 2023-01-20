@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title> 연습02</title>
+</head>
+<body>
+  <script>
+    document.write(`<h1>10. 다음 중 유효한 표현식을 찾고, 그 결과 값의 데이터 유형을 서술하여라. </h1>`);
+    let ga = Math.round(27/13+4);
+    document.write(`가. 27/13+4= ${ga}`,`    데이터 타입 ${typeof(ga)}`,'<br>');
+    let na = 27/13+4.0;
+    document.write(`나. 27/13+4.0= ${ga}`, `  데이터 타입 ${typeof(na)}`,'<br>');
+    let da =  42.7%3+18;
+    document.write(`다. 42.7%3= ${da}`,`데이터 타입 ${typeof(na)}`,'<br>');
+    let ra = (3<4)&&5/8;
+    document.write(`라. (3<4)&&5/8=${ra}`, `데이터 타입 ${typeof(ra)}`,'<br>');
+    let ma = 23/5 + 23/5.0;
+    document.write(`마. 23/5 + 23/5.0=${ma}`, `데이터 타입 ${typeof(ma)}`,'<br>');
+    let ba = 2.0+'a';
+    document.write(`마. 2.0+a=${ba}`, `데이터 타입 ${typeof(ba)}`,'<br>');
+    let sa=2+'a';
+    document.write(`사. 2+a=${sa}`, `데이터 타입 ${typeof(sa)}`,'<br>');
+    let wa = 'a'+'b';
+    document.write(`아. a+b=${wa}`, `데이터 타입 ${typeof(wa)}`,'<br>');
+    let ja = 'a'/'b';
+    document.write(`자. a/b=${ja}`, `데이터 타입 ${typeof(ja)}`,'<br>');
+    let  cha='a'&&'b';
+    document.write(`자. a&&!b=${cha}`, `데이터 타입 ${typeof(cha)}`,'<br>');
+  </script>
+  <script>
+    document.write(`<h1>11. 이름과 몸무게 , 나이를 변수로 선언하고 자신의 것을 값으로 초기화 하는 프로그램을 작성하여라</h1>`);
+    let name = prompt('이름');
+    let weight=prompt('몸무게');
+    let age=prompt('나이');
+    let result=`이름 : ${name} <br>`;
+     result+=`몸무게 : ${weight} <br>`;
+     result+=`나이 : ${age} <br>`;
+    document.write(`${result}`);
+    /*document.write(`이름=${name}`,'<br>',`몸무게=${weight}`,'<br>',`나이=${age}`);*/
+    /*이렇게 document.write를 쓰면 출력할 때 시간이 더 걸리기때문에 위처럼 result 로 += 해서 추가한 다음 한번에 출력하는게 좋다.*/
+  </script>
+
+
+</body>
+</html>
