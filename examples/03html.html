@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>연습03</title>
+  </head>
+  <body>
+    <script>
+      document.write(
+        `<h1>12.생년월일을 이용해서 나이를 계산하는 프로그램을 작성하여라 </h1>`
+      );
+      let birthday = Number(prompt("생년월일 내가한답"));
+      let myage = new Date().getFullYear() - birthday;
+
+      let isPassed = false;
+      //처리 = 나이 계산
+      //결과출력
+      document.write(`나이는 ${myage} 살입니다.`);
+
+      document.write(`밑은 선생님이 한 답지`);
+      let year = 2023;
+      let month = 1;
+      let day = 1;
+    </script>
+    <script>
+      document.write(
+        `<h1>13. 구구단 중 7단을 출력하는 프로그램을 작성하여라. </h1>`
+      );
+      let gugudan = 1;
+      let gugu7dan = 1;
+      let gugu7dan2 = 0;
+      while (gugudan < 10) {
+        while (gugu7dan < 10) {
+          document.write(
+            `${gugudan}x${gugu7dan}=${gugu7dan2 + gugudan * gugu7dan}`,
+            "<br>"
+          );
+          gugu7dan++;
+        }
+        gugu7dan = 1;
+        gugudan++;
+      }
+    </script>
+
+    <script>
+      document.write(
+        `<h1>14. 다음 조건을 만족하는 프로그램을 작성하여라 </h1>`
+      );
+      document.write(
+        `하루는 86400초이다. 입렵값이 123456789.일 경우 몇일인지 계산하여라`,
+        "<br>"
+      );
+
+      let daysec = 86400;
+      let hour = 3600;
+      let min = 60;
+      data1 = 1234567890;
+      data2 = 98765;
+      data3 = 12345;
+//parseint  값을 정수형으로 변환
+      result = `${data1}초는 약 ${parseInt(data1 / daysec)}일이다. <br>`;
+      result += `${data2}초는 약 ${parseInt(data2 / hour)}시간이다. <br>`;
+      result += `${data3}초는 약 ${parseInt(data3 / min)}분이다. <br>`;
+      document.write(result);
+    </script>
+
+
+  </body>
+</html>
