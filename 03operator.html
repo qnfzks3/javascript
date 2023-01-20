@@ -233,5 +233,48 @@
         `학점=${score}`
       );
     </script>
+
+
+    <script>
+
+
+      //ex) 성적 처리프로그램 v2
+      // 이름,국어점수, 영어점수 ,수학점수을 입력받아
+      // 총점,평균, 학점을 계산한 뒤 결과 출력
+      // 단, 학점은 수우미양가중 하나가 출력되어야함  100~90   90~80 80~70
+      let name = prompt("이름");
+      let lang = prompt("언어 점수");
+      let eng = prompt("영어 점수");
+      let math = prompt("수학 점수");
+      // 숫자가 아닌 값을 숫자형으로 묵시적으로 형변환하는 방법은 + 단항연산자 사용
+      let sum = (+lang) + (+eng) + (+math); // 이건 자바스크립트에서만 한정적으로 사용할 수 있다. 다른곳엔 안됨 왜냐 자동으로 형을 변형시켜서
+      //let sum = Number(lang) + Number(eng) + Number(math); // prompt로 나온 값은 문자형으로 나오기때문에 숫자형으로 변경
+      let avg = Math.round(sum / 3);
+      let score =
+              avg >= 90 ? `수`
+                      : avg >= 80 ? `우`
+                              : avg >= 70 ? `미`
+                                      : avg >= 60 ? `양`
+                                              : `가`;
+
+      document.write(`<h1>성적처리 v2</h1>`);
+      document.write(
+              `이름 = ${name}`,
+              `<br>`,
+              `언어점수=${lang}`,
+              "<br>",
+              `영어점수=${eng}`,
+              "<br>",
+              `수학점수=${math}`,
+              "<br>"
+      );
+      document.write(
+              `총점=${sum}`,
+              "<br>",
+              `평균=${avg}`,
+              "<br>",
+              `학점=${score}`
+      );
+    </script>
   </body>
 </html>
