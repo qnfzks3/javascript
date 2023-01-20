@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      document.write(
+        "<h1> 1. 다음 내용을 출력하도록 프로그램을 작성해 보세요</h2>"
+      );
+      document.write(
+        "*&nbsp; &nbsp; * &nbsp;",
+        "&nbsp;&nbsp;&nbsp;**",
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;****",
+        "&nbsp;&nbsp;&nbsp;&nbsp;****",
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;////////",
+        "<br>"
+      );
+      document.write(
+        "*&nbsp; &nbsp; *&nbsp;",
+        "&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;* ",
+        "&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;|",
+        "<br>"
+      );
+      document.write(
+        "*****",
+        "&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*",
+        " &nbsp;****",
+        "&nbsp;&nbsp;&nbsp;&nbsp;****",
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;&nbsp;( |&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;| )",
+        "<br>"
+      );
+      document.write(
+        "*&nbsp; &nbsp; * &nbsp;",
+        "** ** **",
+        "&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;[&nbsp;_&nbsp;]&nbsp;&nbsp; |",
+        "&nbsp;&nbsp; 살려줘...",
+        "<br>"
+      );
+      document.write(
+        "*&nbsp; &nbsp; * &nbsp;",
+        "*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "   *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*",
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;----------",
+        "<br>"
+      );
+
+      document.write(
+        "<h1> 2.다음의 출력화면을 구성하는 영수증 출력 프로그램을 작성하시오</h2>",
+        "<br>"
+      );
+      document.write(
+        "-음식점에서 술과 안주를 먹고 금액을 계산하면 영수증을 받음",
+        "<br>",
+        "-영수증에는 메뉴항목과 단가, 수량, 가격, 총합계, 받은 금액, 10%의 부가세와 잔돈 등이 출력됨",
+        "<br>"
+      );
+      document.write(
+        "<br>",
+        "<b>[음악나라]</b>",
+        "<br>",
+        "--------------------------",
+        "<br>"
+      );
+    </script>
+    <script>
+      let a = 3000 * 2;
+      let b = 12000;
+      let c = (a + b) / 2;
+      let d = (a + b) * 0.1;
+      let e = 50000;
+
+      document.write(
+        `<b>소주</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${2}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${a}<br>`
+      );
+      document.write(
+        `<b>너나치킨</b>&nbsp;&nbsp;&nbsp;&nbsp;${1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${b}<br>`
+      );
+      document.write(`--------------------------<br>`);
+      document.write(
+        `<b>과세합계</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${
+          a + b - d
+        }<br>`
+      );
+      document.write(
+        `<b>부가세</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;${d}<br> `
+      );
+      document.write(`--------------------------<br> `);
+      document.write(
+        `<b>총합계</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${
+          a + b
+        } <br>`
+      );
+      document.write(
+        `<b>받은금액</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${e} <br>`
+      );
+      document.write(
+        `<b>잔돈</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${
+          e - (a + b)
+        }<br>`
+      );
+      document.write(`--------------------------`,`<br>`);
+      document.write(`2014. &nbsp;07. &nbsp;07&nbsp; 14:35:24`)   /*간격을 확 벌리고 싶을땐 \t \t2 ... 를 사용하면 된다.*/
+      </script>
+
+      <script>
+      document.write(
+          `<h1>3.다음 중 자바 변수로 사용 가능한 것은 무엇인지 서술하여라.</h1>`
+      );
+      document.write(
+        `rate1,1stPlayer,myprogram.java,long, TimeLimit,numberOfWindows`
+      );
+      document.write(
+        `답: long, 보통 let 아니면 var인데 const나....답을 모르겟다.  `
+      );
+    </script>
+    <script>
+
+      document.write(`<h1>4.다음 수학식을 자바 표현식으로 바꿔보아라 </h1> `);
+      document.write(`3x  3x+y (x+y) `);
+
+    </script>
+    <script>
+      let number = (1/3)*3;
+      let quotient= 7/3;
+      let remainder=7%3;
+      let result=11;
+      document.write(`<h1>5.다음 문장의 실행결과는 무엇인지 서술하여라 </h1> `);
+      document.write(`가. let number (1/3)*3 = ${number} `,`<br>`);
+      document.write(`나. let quotient=7/3 = ${quotient}`,`<br>`);
+      document.write(`다. let remainder = ${remainder}`,`<br>`);
+      document.write(`나. let result = ${result} ; result/2 =${result/2} `,`<br>`);
+
+
+    </script>
+
+  </body>
+</html>
