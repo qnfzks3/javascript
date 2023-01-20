@@ -9,18 +9,40 @@
       document.write(
         `<h1>12.생년월일을 이용해서 나이를 계산하는 프로그램을 작성하여라 </h1>`
       );
-      let birthday = prompt("생년월일 내가한답");
-      let myage = new Date().getFullYear() - birthday;
+      let byear1 = prompt("생 년 ");
+      let bmonth1 = prompt("생 월일  ");
 
-      let isPassed = false;
+      let myage = new Date().getFullYear() - byear1;
       //처리 = 나이 계산
       //결과출력
-      document.write(`나이는 ${myage} 살입니다.`);
+      document.write(`나이는 ${myage} 살입니다.`,'<br>');
 
-      document.write(`밑은 선생님이 한 답지`);
-      let year = 2023;
-      let month = 1;
-      let day = 1;
+      document.write(`밑은 선생님이 한 답지 <br>`);
+      // 변수선언
+      let year = 2023;  // 현재년
+      let month = 1;    // 현재월
+      let day = 20;     // 현재일
+
+      let byear = Number(prompt("생년year은?"));
+      let bmonth = Number(prompt("생월month은?"));
+      let bday = Number(prompt("생일day은?"));
+
+      // let age = 0;
+
+      // 처리 - 나이계산 (2023, 2002)
+      // 만나이 = 현재년도 - 출생연도 - 1;
+      // 단, 생일이 지났으면 만나이 + 1
+      age = year - byear;
+      age = (month > bmonth && day > bday) ? age : age - 1;
+
+      // 결과출력
+      result = `현재년월일 : ${year}년 ${month}월 ${day}일 <br>`;
+      result += `생년월일 : ${byear}년 ${bmonth}월 ${bday}일 <br>`;
+      result += `나이 : ${age}`;
+
+      document.write(result);
+
+
     </script>
     <script>
       document.write(
