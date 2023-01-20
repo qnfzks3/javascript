@@ -10,11 +10,17 @@
         `<h1>12.생년월일을 이용해서 나이를 계산하는 프로그램을 작성하여라 </h1>`
       );
       let byear1 = prompt("생 년 ");
-      let bmonth1 = prompt("생 월일  ");
+      let bmonth1 = prompt("생 월  ");
+      let bday1 = prompt("생 일  ");
+      let nowmonth=new Date().getMonth();
+      let nowday=new Date().getDate();
 
       let myage = new Date().getFullYear() - byear1;
       //처리 = 나이 계산
       //결과출력
+      myage= (bmonth1>nowmonth)&&(bday1>nowday) ? myage-1: myage;
+
+      document.write(`현재 날짜 : ${new Date()}`,'<br>');
       document.write(`나이는 ${myage} 살입니다.`,'<br>');
 
       document.write(`밑은 선생님이 한 답지 <br>`);
