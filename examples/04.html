@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>도서정보 출력</title>
+</head>
+<body>
+    <h2>도서정보 출력 v1</h2>
+    <script>
+      let bookname='누구나 알기 쉬운 자바 : 입문편';
+      let author='카와바타케시';
+      let translator = '하진일';
+      let publisher='혜지원';
+      let pubdate='2014년 06월'
+      let price=25000;
+      let dispct=10;
+      let mileage=price * (dispct/100);
+      let saleprice = price*(1-(dispct/100));
+
+
+      let result = `도서명 : ${bookname} <br>`;
+      result += `저자: ${author}<br>`;
+      result += `역자: ${translator}<br>`;
+      result += `출판사: ${publisher}<br>`;
+      result += `출간일: ${pubdate}<br>`;
+      result += `정가: ${price}<br>`;
+
+      result += `10%할인가: ${saleprice}<br>`;
+      result += `할인율: ${dispct}%<br>`;
+      result += `적립금: ${mileage}<br>`;
+
+      document.write(result);
+
+    </script>
+
+    <script>
+        document.write('<h2>잔돈 계산하기</h2>');
+        //변수
+        let prices = Number(prompt(`판매금액은?`)); // 판매
+        let money = Number(prompt(`지불금액은?`)); // 지불금액
+        let charge = money - prices;
+
+        let w50k=0;
+        let w10k=0;
+        let w5k=0;
+        let w1k=0;
+        let w500=0;
+        let w100=0;
+        let w50=0;
+        let w10=0;
+
+        w50k=parseInt(charge / 50000);
+        /*charge=charge-50000*w50k*/;
+        charge=charge%50000;
+
+        w10k=parseInt(charge / 10000);
+        /*charge=charge-10000*w10k;*/
+        charge=charge%10000;
+
+        w5k=parseInt(charge / 5000);
+        charge=charge%5000;
+
+        w1k=parseInt(charge / 1000);
+        charge=charge%1000;
+
+        w500=parseInt(charge / 500);
+        charge=charge%500;
+
+        w100=parseInt(charge / 100);
+        charge=charge%100;
+
+
+        //결과
+        charge=money-prices;
+        let result1=`판매금액 : ${prices.toLocaleString()}원 <br>`;
+        result1+=`지불금액 : ${money.toLocaleString()} <br>`;
+        result1+=`잔액 : ${charge.toLocaleString()} <br>`;
+        result1+=`50000원권 : ${w50k}장 <br>`;
+        result1+=`10000원권 : ${w10k}장 <br>`;
+        result1+=`5000원권 : ${w5k}장 <br>`;
+        result1+=`1000원권 : ${w1k}장 <br>`;
+        result1+=`500원권 : ${w500}개 <br>`;
+        result1+=`100원권 : ${w100}개 <br>`;
+        result1+=`100원권 : ${w50}개 <br>`;
+        result1+=`100원권 : ${w10}개 <br>`;
+
+
+        document.write(result1);
+
+
+
+
+    </script>
+
+</body>
+</html>
