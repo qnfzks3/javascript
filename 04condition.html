@@ -232,18 +232,143 @@
     }
     document.write(result);
 
+  </script>
+  <h2>switch</h2>
+  <p>다중 조건 if문을 가독성 있게 작성한 조건문</p>
+  <p>switch의 표현식을 평가하여 그 값의 일치여부에 따라
+    case문 아래의 코드 블럭을 실행하는 구조</p>
+  <p>표현식의 평가값과 일치하는 case가 없는 경우
+    default문의 코드블럭을 실행함</p>
+  <p>단, 표현식의 평가값과 일치하는 case문이 실행되더라도
+    break문이 없으면, switch문이 중단되지 않고
+    나머지 case문을 실행하게 됨 - full through</p>
+  <p> switch(조건식) {</p>
+  <p> case 값1 : 코드블록; break;</p>
+  <p> case 값2 : 코드블록; break;</p>
+  <p> case 값3 : 코드블록; break;</p>
+  <p> } </p>
+  <script>
+    //짤수 홀수 여부 출력3
+    x=4;
+    result='';
+
+    switch (x %2 ) {
+      case 0: result ='짝수입니다!!<br>'; break;
+      case 1: result ='홀수입니다!!<br>'; break;
+    }
+
+    document.write(x,'은',result);
+  </script>
+
+  <script>
+    // 오전 오후 구분하여 출력 v3
+    time = '15:47:12';
+    hour = time[0]+time[1];
+    result='';
+
+    switch (hour){
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4': result='오전 입니다. <br>'; break;
+      case '12':
+      case '13':
+      case '14':
+      case '15':
+      case '16': result='오후 입니다. <br>'; break;
+    }// 이렇게 하면 코드가 너무 길어진다.그래서 조건식을 다르게 써보자
+
+    document.write(time,`은 ${result}`);
+
+  </script>
+  <script>
+    // 오전 오후 구분하여 출력 v4
+    time = '15:47:12';
+    hour = time[0]+time[1];
+    result='';
+
+    switch (hour >= 12){ //hour는 문자형
+      case true: result='오후 입니다. <br>'; break;
+      case false: result='오전 입니다. <br>'; break;
+    }
+
+    document.write(time,`은 ${result}`);
+
+  </script>
+  <script>
+    //월을 입력하면 영어로 변환해서 출력
+    let month=prompt('영어로 변환한 월을 쓰세요');
+    result='';
+
+    switch (month){
+      case '1월': result='january'; break;
+      case '2월': result='february'; break;
+      case '3월': result='march';break;
+      case '4월': result='april';break;
+      case '5월': result='may';break;
+      case '6월': result='june';break;
+      case '7월': result='july';break;
+      case '8월': result='august';break;
+      case '9월': result='september';break;
+      case '10월': result='october';break;
+      case '11월': result='november';break;
+      case '12월': result='december';break;
+      default:result='m';break;
+    }
+    if (result == 'm'){ //=으로 하면 result 에 'm'을 넣어라 라는 뜻이됨 참거짓으로 이프가 발동됨
+      document.write('잘못입력하셨습니다. n월 형식을 맞춰주세요<br>');
+    }else {
+      document.write(month,`는 영어로 ${result} 입니다.<br>`);
+    }
+
+    // break는 switch 문을 나가게 하는 출구입니다.
+
+  </script>
+  <script>
+    //월, 윤년여부(y/n)를 입려하면 해당 월의 마지막 날을 출력
+    //1,3,5,7,8,10,12 - 31일
+    //4,6,9,11 - 30일
+    // 2 - 윤년여부에 따라 28(n)일 or 29(y)일
+    let isyear='n'
+    let month2=6;
+    let lastday= 0;
+    switch (month2){
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12: lastday=31; break;
+
+      case 4:
+      case 6:
+      case 9:
+      case 11: lastday=30;break;
+      case 2: if(isyear=='y'){lastday=29;}
+            else {lastday=28;} break;
+      default:lastday='잘못 입력하셧습니다.';break;
+      }
+      document.write(month2,'월은 ',lastday,'일이 마지막 날입니다.<br>');
+  </script>
+  <script>
+    //평균점수에 따라 수우미양가로 성적결과 출력 v2
+    avg = 83.1;
+    result='';
+    switch (parseInt(avg/10)){
+      case 10: result = '수'; break;
+      case 9: result='수'; break;
+      case 8: result='우'; break;
+      case 7: result='미'; break;
+      case 6: result='양'; break;
+      default: result='가'; break;
+    }
+    document.write(avg,`점은 ${result} 입니다.`);
 
   </script>
 
 
-<p>다중 조건 if문을 가독성 있게 작성한 조건문</p>
-<p>switch의 표현식을 평가하여 그 값의 일치여부에 따라
-  case문 아래의 코드 블럭을 실행하는 구조</p>
-<p>표현식의 평가값과 일치하는 case가 없는 경우
-  default문의 코드블럭을 실행함</p>
-<p>단, 표현식의 평가값과 일치하는 case문이 실행되더라도
-  break문이 없으면, switch문이 중단되지 않고
-  나머지 case문을 실행하게 됨 - full through</p>
 
 <p>javascript 한정으로 switch의 case문에
   비교 연산자를 이용한 범위를 검사하는 코드를
