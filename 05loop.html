@@ -89,6 +89,131 @@
         }
         document.write(man,'<br>');
     </script>
+    <script>
+        //구구단 출력 v1
+        document.write(`2x1=2 <br>`);
+        document.write(`2x2=4<br>`);
+        document.write(`2x3=6<br>`);
+        document.write(`2x4=7<br>`);
+        document.write(`2x5=8<br>`);
+        document.write(`2x6=9<br>`);
+
+    </script>
+    <script>
+        //구구단 출력 v2
+        for (i=1; i<=9;i++){
+            document.write(`2x${i}=2<br>`);
+        }
+    </script>
+    <script>
+        //구구단 출력 v3
+        let dan = 5;
+        for (i=1; i<=9;i++){
+            document.write(`${dan}x${i}=${dan*i}<br>`);
+        }
+    </script>
+    <script>
+        //구구단 출력 v4
+        let a=1;
+        let b=1
+        for (b=1; b<=9; b++ ){
+            for(a=2;a<=5;a++){
+                document.write(`${a}x${b}=${a*b}`,'&nbsp; ',' ');
+            }
+            document.write(`<br>`);
+        }
+
+    </script>
+
+    <h2>무한 반봅문 - for</h2>
+    <p>for문의 경우 초기식, 판별식, 증감식을 비워두면 반봅을 끊임없이 실행하는 무한 반복문이 됨 </p>
+
+    <script>
+        //for( ; ; ){
+         //   document.write(`Hello , World!! <br>`)
+       // }  이거 무한 찍으니깐 랙걸리고 브라우저가 무한이라 에러남
+    </script>
+    <h2>중첩반복문 - for</h2>
+    <p>2개 이상의 for 문을 결쳐 사용하는 반복문</p>
+    <p>복잡한 작업을 반복 실행할 때 유용하게 사용</p>
+
+    <script>
+        //별* 5개를 5줄 출력
+        for(i=1;i<=5; i++){
+            document.write('*****<br>');
+        }
+    </script>
+    <script>
+        // 10층짜리 별* 피라미드 출력
+        for( i=1;i<=10; i++){
+            for (let j=1; j<=i; j++){
+                document.write(`*`);
+            }
+            document.write(`<br>`);
+        }
+    </script>
+
+    <script>
+        // 10층짜리 별* 피라미드 역출력
+
+
+
+        for (let j=1; j<=10; j++){
+            for (let i=10; i>=j; i--){
+                document.write(`*`);
+            }
+            document.write(`<br>`);
+        }
+
+    </script>
+    <h2> break </h2>
+    <p>원하는 시점에 반복문이나 코드블록에서 벗어나기 위해 사용</p>
+    <p> </p>
+
+    <script>
+        // 1~1000까지의 총합을 계산
+        // 단, 총합이 10000을 넘으면 계산을 중단함
+        let sum=0;
+        let jak=1;
+        for(jak=1; sum<=1000; jak++){
+            sum =sum+jak;
+        }
+
+        document.write(sum,'<br>');
+
+        //break 써보면?
+        let sum2 =0;
+        let i= 1;
+        for( ; i<=1000; i++){
+            if(sum2>1000) {
+                break;
+            }
+            sum2 += i;
+        }
+        document.write(i,',',sum2,'<br>');
+
+    </script>
+    <h2>continue</h2>
+
+    <p> 반복을 일시적으로 건너뛰어 다음 반복으로 넘어감</p>
+
+    <script>
+        // 1~1000까지의 총합을 계산
+        // 단, 5의 배수나 7의 배수는 계산에서 제외함
+         sum =0;
+
+        for(let i= 1 ; i<=1000; i++){
+            if(i%5 ==0 || i%7 ==0) continue;
+
+            sum +=i;
+        }//continue 문은 그 밑에 내용들은 스킵 안한다
+
+        document.write(sum);
+
+
+
+    </script>
+
 
 
 
