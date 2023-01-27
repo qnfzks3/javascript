@@ -2,9 +2,93 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>  </title>
+    <title> 연습05  </title>
 </head>
 <body>
+    <script src="../js/05.js"></script>
+
+    <h2> 25. 다음 조건을 만족하는 복권 발행 프로그램을 작성하세요.(Lotto) </h2>
+    <p> 가. 사용자로 부터 복권 숫자 3자리를 입렵 받으세요. (yourkey) </p>
+    <p> 나. 변수에 임의의 복권 숫자 3자리를 초기화 합니다. (lottokey) </p>
+    <p> 다. 사용자가 입력한 복권 숫자가 모두 일치 : 상금 1백만 지급 </p>
+    <p> 라. 일치하지 않는 경우 : "아쉽지만,다음 기회를!"라고 출력 </p>
+     <script>
+         let Lotto1=()=>{
+             let yourkey=[];
+             let lottokey=[10,15,34];
+             let a=0;
+
+             yourkey.push(parseInt(prompt('첫번째 숫자')));
+             yourkey.push(parseInt(prompt('두번째 숫자')));
+             yourkey.push(parseInt(prompt('세번째 숫자')));
+             for (let j=0; j<=2;j++){
+                 for (let i=0; i<=2;i++ ){
+                     if (yourkey[i]==lottokey[j]){
+                         a++
+                     }
+                 }
+
+             }// 여기 폴
+             if (a>=3){
+                 document.write(`당첨! 축하합니다. 상금 1백만 지급!<br>`)
+             }else {
+                 document.write(`꽝 아쉽지만, 다음 기회를!<br>`)
+             }//여기 이프
+             document.write(`당첨 번호는 ${lottokey}였습니다. 사용자의 답 ${yourkey} <br><br>`)
+         }//여기 펑션
+         /*Lotto1();*/
+
+
+
+
+
+
+         let lotto=726+'';
+         let mykey='726';
+         result=lotto_v1(lotto,mykey);
+         document.write(result,'<br>');
+
+
+
+
+
+
+
+
+
+
+     </script>
+     <h1>26.사용자가 연봉과 결혼 여부를 입력하면 다음의 세금율에 의해 납부해야할 세금을 계산하는 프로그램을 작성하시오 </h1>
+     <p> 가. 미혼인 경우 : 연봉 3000미만 - 10%, 연봉 3000이상 - 25%</p>
+     <p> 나. 결혼인 경우 : 연봉 6000미만 - 15%, 연봉 6000이상 - 35%</p>
+     <script>
+
+         let Tax=()=>{
+             let salary = parseInt(prompt('연봉을 적으시오'));
+             let marry = prompt('결혼 여부를 적으시오 결혼/미혼');
+
+             if (marry=='미혼'){
+                 if(salary<3000){
+                     result=`납부하실 세금`;
+                 }
+
+
+             }
+
+         }
+
+
+
+
+
+
+     </script>
+
+
+
+
+
+
 
 </body>
 </html>
