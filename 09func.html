@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>자바스크립트 함수</title>
+  </head>
+  <body>
+    <h1>자바스크립트 함수</h1>
+    <h2>함수 외부 참조</h2>
+    <p>함수 정의를 독립적인 소스파일에 작성하고 사용하려는 곳에서 이것을 호출해서 사용할 수 있음</p>
+    <p>script 태그의 src 속성을 이용해서 소스파일을 지정해야 함</p>
+
+    <script src="js/08func.js"></script>
+    <script>
+      let year = 2020;
+      let result = computeleapYear(year);
+      document.write(result);
+    </script>
+
+    <h2>익명함수</h2>
+    <p>자바스크립트의 함수는 1급 시민이므로 값으로 취급할 수 있음</p>
+    <p>
+      따라서, 함수를 익명으로 정의한 후 변수에 대입하는 식으로 함수를 선언할
+      수도 있음
+    </p>
+    <script>
+
+      let sayhello4 = function sayhello(msg) {
+        return `Hello, ${msg}!! <br>`;
+      };
+      let result = sayhello4("1급 시민");
+      document.write(result);
+    </script>
+    <h2>화살표 함수</h2>
+    <p>ES6에서 추가된 기능으로 함수 선언을 간단하게 작성 가능</p>
+    <p>즉, fuction이라는 키워드 대신 =>를 이용해서 함수를 선언할 수 있음</p>
+
+    <script>
+        //변수명=()=>{코드}
+        let sayhello5 = (msg) => {
+            return `Hello, ${msg}!! <br>`;
+        }
+
+        result = sayhello5("화살표 함수");
+        document.write(result);
+    </script>
+    <script>
+        //변수명=()=> 코드   괄호 생략
+        let sayhello6 = (msg) =>
+            document.write(`Hello, ${msg}!! <br>`) ; //한줄시 가로 생략이 가능하다.
+
+        sayhello6("괄호 생략 화살표 함수");
+
+    </script>
+    <script>
+        //변수명=()=> 코드   괄호 생략
+        let sayhello7 = (msg) =>
+            `Hello, ${msg}!! <br>`; //한줄시 가로 생략이 가능하다.
+
+        result = sayhello7("괄호와 리턴 까지도 생략한 화살표 함수");
+        document.write(result);
+
+    </script>
+    <script>
+        // 부가세 계산 프로그램 : computeVAT
+        // 금액을 입력하면 부가세를 계산해서 출력
+
+        //선언형
+        function computeVAT1(m){
+            return m*(0.1);
+
+        }
+        let price=15000;
+        document.write(price,`의 부가세는 ${computeVAT1(price)}`,'원입니다. <br>')
+
+        //익명
+        let computeVAT2 =function computeVAT2(m){
+            return m*(0.1);
+        }
+         price=15000;
+        document.write(price,`의 부가세는 ${computeVAT2(price)}`,'원입니다. <br>')
+
+
+
+        //화살표v1
+        let computeVAT3= (m)=>{
+            return m*(0.1);
+        };
+
+        document.write(price,`의 부가세는 ${computeVAT3(price)}`,'원입니다. <br>')
+
+
+
+        //화살표v2
+        let computeVAT4= (price)=> document.write(price * 0.1 );
+
+
+       computeVAT4(price);
+       document.write('원<br>')
+
+
+
+
+
+        //화살표v3
+        let computeVAT5= (price)=> price*0.1;
+
+        document.write(computeVAT5(price),'원');
+
+
+    </script>
+
+
+
+  </body>
+</html>

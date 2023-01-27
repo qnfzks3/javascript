@@ -32,3 +32,15 @@ function showStarPyramid(m){
 
     document.write(result,'<br>');
 }
+
+function showAMPM(time){
+    console.log(typeof time);
+    hour= time[0]+time[1];
+    console.log(typeof hour);
+    switch (hour >= 12){
+        case true:
+            return '오후 입니다. <br>';
+        case false:
+            return  '오전 입니다. <br>';
+    }
+}
