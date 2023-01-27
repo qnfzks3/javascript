@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title> 자바스크리브  </title>
+</head>
+<body>
+  <h1>자바스크립트 함수</h1>
+  <h2>개요</h2>
+  <p>특정 작업(코드블록)을 여러번 반복해야 하는 경우 해당 작업을 재사용 가능한 구조로 만들 때 사용</p>
+  <p>죽, 어떤 작업을 수행하기 위해 필요한 코드들의 집합을 의미하고, 이것들을 재사용하기 위해 모듈 형태로 작성한 것 </p>
+
+  <p>function 함수명(매개변수들,...){</p>
+  <p> 코드들 </p>
+  <p> }</p>
+  <script>
+    //인삿말 v1
+    //함수 정의
+    function sayhello(){
+      document.write('Hello, World!! <br>');
+    }
+    //함수 호출 : 함수명
+    sayhello();
+  </script>
+  <script>
+    //인삿말 v2
+    //함수 정의
+    function sayhello2(msg){
+
+      document.write(`Hello, ${msg}!! <br>`);
+    }
+
+    //함수 호출 : 함수명(인자) =인자 - argument - arg
+    sayhello2('java');
+    sayhello2('HTML');
+    sayhello2('CSS');
+
+  </script>
+  <SCRIPT>
+    //인삿말 v3
+    //함수 정의
+    function sayhello3(msg){
+
+      return `Hello, ${msg}!! <br>`;  /*그냥 내용만 적고 싶다 할때 return */
+    }
+
+
+    sayhello3('java');    /*<-  return 값이기 때문에 적용되지 않았다. 적용하려면*/
+    document.write('🤣🤣', sayhello3('HTML')); /*이모지는 윈도우 . 을 누르면 된다.*/
+    sayhello3('CSS');
+  </SCRIPT>
+
+
+  <script>
+   /* 년도를 입력하면 윤년 여부를 계산해서 출력
+    윤년여부를 계산하는 함수: computeleapYear
+*/
+
+    year=parseInt(prompt('년도를 작성 하세요.'))
+
+    function computeleapYear(y){
+
+      /*if ( y%4 ==0 ){
+        if (y%100==0){
+          return '평년입니다.';
+        }else {
+          return '윤년입니다.'
+        }
+      }else{
+        if (y%400 ==0){
+          return '윤년입니다.'
+        }else {
+          return '평년입니다.'
+        }
+      }              여기말고 다른 방식은?*/
+      if ( (year%4 ==0 && year%100!=0)||(year%400 ==0) ){
+        let result= `은 윤년입니다.`;
+      }else{
+        result=`은 평년입니다.`;
+      }
+      return `${year}년 ${result}`;
+    }
+    document.write(computeleapYear(year),'<br>');
+
+
+
+
+
+
+
+  </script>
+  <script>
+    /*층 수를 입력받아 별* 피라미드 출력 : showStarPyramid*/
+
+    function showStarPyramid(m){
+      let result =' ';
+      for( i=1;i<=m; i++){
+        for (let j=1; j<=i; j++){
+          result+=`*`;
+        }
+        result +='<br>';
+      }
+
+      document.write(result,'<br>');
+    }
+    let floor = parseInt(prompt('몇 층'));
+    showStarPyramid(floor)
+
+
+
+  </script>
+  <script>
+    //시분초를 입력받아 오전, 오후 구분하여 출력: showAMPM
+    let time= prompt('현재 시간은?')
+
+    function showAMPM(time){
+      console.log(typeof time);
+      hour= time[0]+time[1];
+      console.log(typeof hour);
+      switch (hour >= 12){
+        case true:
+          return '오후 입니다. <br>';
+        case false:
+          return  '오전 입니다. <br>';
+      }
+    }
+
+
+    console.log(typeof time);
+    document.write(showAMPM(time));
+
+
+  </script>
+
+  <script>
+    //국어 , 영어 , 수학을 입력하면 학점을 출력하는 함수 : computeSungJuk
+
+
+
+
+  </script>
+
+
+
+
+</body>
+</html>
