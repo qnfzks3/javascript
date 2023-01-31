@@ -37,7 +37,6 @@ class SungJuk2{                 //값만 다루는 클래스 : VO , DTO
 
 }
 
-
 class SungJukService2{         //기능을 하는 클래스: Service , DAO, Util       클래스는 보통 2가지로 나눔 - 값만 저장하는 클래스와 기능을 저장하는 클래스
 
     static computeSungJuk = (sj)=>{         //객체생성 없이 바로 메서드 호출 가능
