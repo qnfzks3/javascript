@@ -223,19 +223,16 @@
             }
         }*/
 
-
-        let c = new Set();
-
-
-        while(c.size <=6){
-            c.add(parseInt(Math.random()*45)+1);
+        let lotto2=new Set();     //단지
+        while (lotto2.size<6){
+            lotto2.add(parseInt(Math.random()*45)+1);
         }
-        document.write(c,'/',c.size , '<br>');
+        document.write(lotto2.size,'<br>');
 
+        for (let val of lotto2)
+            document.write(val,' ');
 
-
-
-        document.write('<br>')
+        document.write('<br>');
 
 
     </script>
@@ -250,44 +247,99 @@
         // SungJuk 객체의 showSungkuk이라는 함수를 이용해서
         // 성적처리 결과를 출력함
 
-        let names = [];
-        let kors = [];
-        let engs = [];
-        let mats = [];
-        let tots = [];
-        let avgs = [];
-        let grds = [];
+        let Sungjuk={
+            name : '',
+            kor : 0,
+            eng : 0 ,
+            mat : 0,
+            tot : 0,
+            avg : 0.0,
+            grd : '',
+            computeSungJuk : function (){
+                this.tot = this.kor +this.eng +this.mat;
+                this.avg=this.tot/3;
+                switch (parseInt(this.avg / 10)) {
+                    case 10:case 9:
+                        this.grd="수";
+                        break;
+                    case 8:
+                        this.grd="우";
+                        break;
+                    case 7:
+                        this.grd="미";
+                        break;
+                    case 6:
+                        this.grd="양";
+                        break;
+                    default:
+                        this.grd="가";
+                        break;
+                }//switch
+            },
+            showSungJuk : function (){
+                return `${this.name} ${this.kor} ${this.eng} ${this.mat} <br> ${this.tot} ${this.avg} ${this.grd} <br>`;
+            }
 
-        for (let i = 0; i <= 2; i++) {
+        };
+        Sungjuk.computeSungJuk();
 
-            names.push(prompt(`${i+1}번 학생의 이름은?`));
-            kors.push(parseInt(prompt(`${i+1}번 ${ names[i]} 학생의 국어 점수는?`)));
-            engs.push(parseInt(prompt(`${i+1}번 ${ names[i]} 학생의 영어 점수는?`)));
-            mats.push(parseInt(prompt(`${i+1}번 ${ names[i]} 학생의 수학 점수는?`)));
+        result=Sungjuk.showSungJuk();
+        document.write(result);
 
-            tots.push(kors[i] + engs[i] + mats[i]);
-            avgs.push(tots[i] / 3);
 
-            switch (parseInt(avgs[i] / 10)) {
-                case 10:
-                case 9:
-                    grds.push("수");
+
+
+    </script>
+    <script>
+        // 매개변수로
+
+        let Sungjuk2= {
+            name: '',
+            kor: 0,
+            eng: 0,
+            mat: 0,
+            tot: 0,
+            avg: 0.0,
+            grd: '',
+        }
+        let computeSungJuk = (sj)=>{
+            sj.tot = sj.kor +sj.eng +sj.mat;
+            sj.avg=sj.tot/3;
+            switch (parseInt(sj.avg / 10)) {
+                case 10:case 9:
+                    sj.grd="수";
                     break;
                 case 8:
-                    grds.push("우");
+                    sj.grd="우";
                     break;
                 case 7:
-                    grds.push("미");
+                    sj.grd="미";
                     break;
                 case 6:
-                    grds.push("양");
+                    sj.grd="양";
                     break;
                 default:
-                    grds.push("가");
+                    sj.grd="가";
                     break;
             }//switch
-            document.write(`${names[i]} ${kors[i]} ${engs[i]} ${mats[i]} <br> ${tots[i]} ${avgs[i]} ${grds[i]} <br>`);
-        }//for
+        }
+
+        showSungJuk=(sj)=>{
+            return `${sj.name} ${sj.kor} ${sj.eng} ${sj.mat} <br> ${sj.tot} ${sj.avg} ${sj.grd} <br>`;
+        };
+
+        Sungjuk2.name='수지';
+        Sungjuk2.kor=76;
+        Sungjuk2.eng=65;
+        Sungjuk2.mat=45;
+
+        computeSungJuk(Sungjuk2);
+        document.write(showSungJuk(Sungjuk2));
+
+
+
+
+
 
 
     </script>
