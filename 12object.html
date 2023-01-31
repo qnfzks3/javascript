@@ -145,9 +145,9 @@
 
       document.write(person4,'<br>');
 
-      // 대솰호로 내용 출력
+      // 대괄호로 내용 출력 (x)
       document.write(person4['name'],'<br>');
-      // . 기호로 내용출력
+      // . 기호로 내용출력 (x)
       document.write(person4.name,'<br>');
 
       // 객체명.get (키)로 내용 출력   -  Map 은 get 으로 출력
@@ -222,22 +222,16 @@
                 break;
             }
         }*/
+
+
         let c = new Set();
 
-        c.add(parseInt(Math.random()*45)+1);
-        c.add(parseInt(Math.random()*45)+1);
-        c.add(parseInt(Math.random()*45)+1);
-        c.add(parseInt(Math.random()*45)+1);
-        c.add(parseInt(Math.random()*45)+1);
 
-
-
-
-
-        while(c.size <6){
+        while(c.size <=6){
             c.add(parseInt(Math.random()*45)+1);
         }
-        document.write(c,' ');
+        document.write(c,'/',c.size , '<br>');
+
 
 
 
