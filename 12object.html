@@ -8,9 +8,9 @@
     <h1>자바스크립트 객체</h1>
     <h2>개요</h2>
     <p> 자바스크립트는 기본 자료형을 제외한 나머지는 모두 객체임 </p>
-    <p>자바스크립트는 기본적으로 key 와 value 로 구성된 속성들의 집합 </p>
-    <p>자바스크립트의 함수는 1급 시민이므로 값으로 취급 가능</p>
-    <p>따라서 , 객체는 데이터를 의미하는 속성과 데이터를 참조하고 조작하는 동작을 의미하는 메서드(선언된 함수)로 구성할 수 있음</p>
+    <p> 자바스크립트는 기본적으로 key 와 value 로 구성된 속성들의 집합 </p>
+    <p> 자바스크립트의 함수는 1급 시민이므로 값으로 취급 가능</p>
+    <p> 따라서 , 객체는 데이터를 의미하는 속성과 데이터를 참조하고 조작하는 동작을 의미하는 메서드(선언된 함수)로 구성할 수 있음</p>
 
     <h2>속성 property </h2>
     <p>키와 값으로 구성된 객체의 주된 구성요소 </p>
@@ -45,9 +45,9 @@
     <p>for - in문을 사용하면 객체에 포함된 모든 속성에 접근할 수 있음 </p>
 
     <script>
-      //for (let 키이름 in 참조할 객체명 )
+      //for (let 키이름 in 참조할 객체명 ) 이렇게 for 안에 선언하면  person을 promp안에 넣고 for은 그 객체의 개수만큼 반복
       for (let prop in person){
-        document.write(prop,'-',person[prop],'<br>')
+        document.write(prop,'-',person[prop],'<br>');  //promp= 객체명이며  - person[promp]=객체의 값
 
       }
     </script>
@@ -144,6 +144,7 @@
       person4.set('email','xyz987@abc123.co.kr');
 
       document.write(person4,'<br>');
+      document.write('<br>');
 
       // 대괄호로 내용 출력 (x)
       document.write(person4['name'],'<br>');
@@ -152,6 +153,7 @@
 
       // 객체명.get (키)로 내용 출력   -  Map 은 get 으로 출력
       document.write(person4.get('name'),'<br>');
+      document.write('<br>');
 
       //for-in으로 내용 출력  (x) 출력안됨
       for (let key in person4)
@@ -338,11 +340,8 @@
 
 
 
-
-
-
-
     </script>
+
 
 
 
