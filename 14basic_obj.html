@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title> 자바스크립트 내장 객체</title>
+</head>
+<body>
+    <h1> 자바스크립트 내장 객체</h1>
+    <h2> 개요</h2>
+    <p>자바스크립트에서 기본적으로 제공하는 객체에 포함된 여러가지 함수를 알아봄</p>
+    <p>자바스크립트의 내장객체에는 크게 3가지로 분류 : native, host, 사용자정의 객체</p>
+
+    <h2> Native 객체</h2>
+    <p> EMCASscript 규격에 따라 정의된 객체</p>
+    <p> Object, String , Number,Function,Array,Date,Math,RegExp등이 제공됨</p>
+    <p>이러한 객체들은 전역 객체 global object라고 부름</p>
+
+    <h2> Function</h2>
+    <p> 함수정의시 사용</p>
+
+    <script>
+        let add= new Function('a','b','return a+b');
+        document.write(add(10,5),'<br>');
+
+    </script>
+
+    <h2>String</h2>
+    <p>문자열을 효율적으로 다룰 수 있게 해 줌 </p>
+    <p>String 객체는 기본적으로 불변 immutable 객체(변경불가)임</p>
+    <p>문자열은 기본적으로 문자열 상수풀pool을 이용해서 관리함 </p>
+
+    <script>
+        let str1=`Hello, World!!`;
+        let str2=`Hello, World!!`;
+        let str3=new String(`Hello, World!!`);
+
+        document.write(str1 ==str2,'<Br>'); //값 비교  - > 값 자체는 다 같다
+        document.write(str1 ==str3,'<Br>');
+
+
+        document.write(str1 ===str2,'<Br>'); //값,자료형 비교
+        document.write(str1 ===str3,'<Br>');
+
+
+
+        //str1 과 str2의 메모리번지는 동일하지만 (같은 위치에 저장된 값): 문자열 상수풀 때문임
+        //str1 과 str3는 메모리번지가 서로 다름
+        document.write(str1[0],str1[7],'<br>');
+        //문자열은 문자들로 구성된 배열 - 부분적인 slice기능 제공
+
+        str1[0]='h';
+        document.write(str1[0],'<br>');
+        //문자열은 불변객체이므로 개별문자 수정 불가!
+
+        str4=['H','e','l','l','o'];
+        str4[0]='h';
+        document.write(str4,'<br>');
+    </script>
+
+    <script>
+        //lenght : 문자열 길이 반환
+        document.write(str1.length,'<br>');
+        //at : 지정한 위치의 문자
+        //charAt : 지정한 위치의 문자 추출
+        document.write(str1.at(0),'<br>');
+        document.write(str1.charAt(0),'<br>');
+
+        //indexOF(찾는문자열) : 특정문자열의 존재여부 확인
+        //반환값은 해당 문자열의 위치 출력
+
+        document.write(str1.indexOf('World'),'<br>');
+        document.write(str1.indexOf('sayHello'),'<br>');
+
+        //lastIndexOF(찾는 문자열) : 특정문자열의 존재여부 확인 - 맨 마지막 문자열 발견 존재여부 확인
+        //012345678901234567
+
+        str5='Hello,Hello,Hello,World';
+
+        document.write(str5.indexOf('Hello'),'<br>');
+        document.write(str5.lastIndexOf('Hello'),'<br>');
+
+        //slice(시작,끝-1) : 지정한 범위내 문자 추출  -   slice(그냥 시작 자릿수 0~ , 몇번째 자리까지? 1 ~  단 - 하면 몇번째 자리까지 지우고 싶어? 느낌 )
+        //ex) str1에서 World 추출
+        document.write(str1.slice(7,12),'<br>');
+
+        //ex)str5에서 World 추출
+        document.write(str5.slice(18),'<br>');
+
+    </script>
+
+    <script>
+
+        // #33 카드번호 식별하기 v2
+        let cardCheck2 = (cardnum)=>{
+            let result = '잘못된 카드번호입니다!!';
+            cdnum = cardnum.slice(1);   //2번째부터 나머지 문자 추출
+
+            if (cardnum[0] == '4') {
+                result = 'visa - ';
+                if (cdnum == '04825') result += '비씨카드';
+                else if (cdnum == '38676') result += '신한카드';
+                else if (cdnum == '57973') result += '국민은행';
+
+            } else if (cardnum[0] == '5') {
+                result = '마스터카드 - ';
+                switch (cdnum) {
+                    case '15594': result += '신한카드'; break;
+                    case '24353': result += '외환카드'; break;
+                    case '40926': result += '국민은행'; break;
+                }
+            } else if (cardnum.slice(0,2) == '35') {
+                cdnum = cardnum.slice(2);
+                result = 'JCB카드 - ';
+                switch (cdnum) {
+                    case '6317': result += 'NH농협카드'; break;
+                    case '6901': result += '신한카드'; break;
+                    case '6912': result += 'KB국민카드'; break;
+                }
+            }
+            return result;
+        }
+
+        document.write(cardCheck2('356912'),'<br>');
+        document.write(cardCheck2('457973'),'<br>');
+
+    </script>
+    <script>
+        //substring(st, ed-1):slice 동일, 양수 지원 , 여기 부터 여기까지 출력
+        let jumin ='123456-1234567';
+
+        let gender = jumin.substring(7,8);
+        document.write(gender);
+
+        gender=jumin.substring(-1); //작동 x
+
+        //substr(st,cnt) 시작후, 몇자   = 곧 사라질 함수 (deprecated 함수)
+        gender=jumin.substr(7,1);
+        document.write(gender);
+
+        //replace(찾을 문자 ,대체할 문자)
+        //ex) Hello를 Hi로 변경
+        document.write(str5.replace('Hello','Hi'),'<br>'); //<- hello가 여러개임
+
+        //만일 찾을 문자열이 하나 이상인 경우
+        //정규표현식 형태로 작성하고 범위를 지정해야 함
+        // 적용범위 : g(global)
+        document.write(str5.replace(/Hello/g,'Hi'),'<Br>'); // hello /g 하면 모든 Hello를 hi로 바꿔라
+
+        //대소문자 구분없이 찾을 문자열을 찾고 싶으면 i 옵션 사용
+        // i : insensitive
+        document.write(str5.replace(/hello/i,'Hi'),'<br>'); // hello /i 하면 하나의Hello를 hi로 바꿔라
+        document.write(str5.replace(/hello/ig,'Hi'),'<br>'); // hello /ig 하면 대소문자 구분없이 모든 Hello를 hi로 바꿔라
+        document.write(str5);
+
+        // toUpperCase, toLowerCase : 대소문자 변환
+        document.write(str5.toUpperCase(),'<br>');
+        document.write(str5.toLowerCase(),'<br>');
+
+        //concat : 문자열들을 하나로 합치는 함수
+        let str6 ='Hello' , str7= 'Word';
+        document.write(str6.concat(' ',str7,'<br>'));  //  str6 + str7  : Hello World
+
+        //split (구분문자) : 문자열을 구분문자로 나눠 배열로 저장  ->split( ' 보여줄 곳 까지 ')
+        let today = '2023-02-01 09:58:45';
+
+        document.write(today.split(' ')[0],'<br>' );
+        document.write(today.split(' ')[1],'<br>' );
+
+        //ex) today 변수에서 년 , 월 , 일을 추출
+        let date = today.split(' ')[0].split('-');
+        document.write(date[0],'년',date[1],'월',date[2],'일','<br>')
+
+        //ex) today 변수에서 시,분,초을 추출
+        let time = today.split(' ')[1].split(':');
+        document.write(time[0],'시',time[1],'분',time[2],'초','<br>')
+
+    </script>
+    <script>
+        //padStart,padEnd : 문자열 앞 뒤에 지정한 길이 만큼 문자 추가
+        let month = '3';  //전체자리 2자리, 나머지 0으로 채움
+        document.write(month,'<br>');
+        document.write(month.padStart(2,0),'<br>');//전체자리 2자리, 나머지 0으로 채움
+
+    </script>
+    <script>
+        // 대학교 학번코드는 입학년도(2자리) +
+        //     학과번호(4자리) + 개인번호(6자리)로 구성
+        // 입학년도가 2022, 학과번호가 35, 개인번호가 157일때
+        // 완전한 학번코드를 작성하세요
+        // => 22 0035 000157
+        let year = '2022';
+        let deptno = '35';
+        let psno ='157';
+
+        let hakbun=year.slice(2,4).concat(deptno.padStart(4,'0')).concat(psno.padStart(6,'0'));
+        document.write(hakbun,'<br>');
+
+        //repeat : 문자열을 지정한 횟수만큼 반복(ES5)
+        document.write(hakbun.repeat(3),'<br>');
+
+    </script>
+
+    <h2> Number </h2>
+    <p> 숫자를 다룰 때 유용한 함수 제공 </p>
+    <script>
+        // toFixed(소수자리수) : 소수점 이하 출력할 자리수 지정
+        let num=3.141592;
+        document.write(num.toFixed(1),'<br>');
+        document.write(num.toFixed(2),'<br>');
+        document.write(num.toFixed(3),'<br>'); // 소수점 몇째자리에서 반올림
+
+    </script>
+
+    <h2>Math</h2>
+    <p>수학적 상수와 기타 함수 제공</p>
+
+    <script>
+        //round :반올림
+
+        document.write(Math.round(num),'<Br>');
+
+
+        //floor : 무조건 내림
+        document.write(Math.floor(num),'<Br>');
+
+
+        //ceil : 무조건 올림
+        document.write(Math.ceil(num),'<Br>');
+
+        //random : 0~1 사이 임의 실수값 출력
+        //특정 범위의 임의의 정수 생성 공식
+        // (random*(max-min+1))+min
+
+        // ex)위 공식을 이용해서 randInt라는 함수를 만듬
+        // 1~45 사이 임의의 정수6개를 출력
+        // => randInt(1,45)
+
+        let lotto = Math.floor(Math.random()*(45-1+1))+1;
+        document.write(lotto,'<br>');
+
+        let randInt = (mn,mx)=>{
+            return Math.floor(Math.random()*(mx-mn+1))+mn;
+
+        };
+        for(let i=1;i<=6;i++){
+            document.write(randInt(1,45),' ');
+        }
+
+    </script>
+
+    <H2>Date</H2>
+    <p>날짜와 시간을 다루는 함수</p>
+    <script>
+        // 날짜와 시간 생성
+        let datetime =new Date();
+
+        document.write(datetime,'<br>');
+        document.write(datetime.toLocaleString(),'<br>');
+        document.write(datetime.toLocaleDateString(),'<br>');
+        document.write(datetime.toLocaleTimeString(),'<br>');
+
+        datetime=new Date('2022-12-31 11:59:30');
+
+        // 사용자 임의 날짜시간 설정 1
+        document.write(datetime,'<br>');
+        document.write(datetime.toLocaleString(),'<br>');
+
+        datetime=new Date(2023,1-1,1,6,0,10);    //월은 0부터 인식하기때문에 항상 -1 해주자
+        document.write(datetime,'<br>');
+        document.write('<br>');
+
+        //사용자 정의 날짜시간 설정2
+        //날짜 계산
+        //1년을 초로 변환 : 60 * 60 * 24 *365 = 1분 1시간 하루 1년 =31536000
+        let date1 = new Date('2023-02-01');  // 시간을 기입하지않으면 기준 00시 00분 00초
+        let date2 = new Date('2022-02-01');
+
+        document.write(date1-date2,'<br>');  //둘을 빼면 365라는 숫자가 나와야한다 하지만315 ~가 나온다. 초로 나옴
+
+        //날짜계산의 결과는 1/1000 단위 초이므로 변환 필요!
+        document.write(Math.floor((date1-date2)/1000),'<br>');
+
+        //초단위 값을 일단위 갑으로 변환    일 = 60초 * 60분 * 24시간 =86400초
+        document.write(Math.floor(((date1-date2)/1000)/86400),'<br>');
+        document.write('<br>');
+
+        //년월일시분초 출력시 2자리 단위로 출력
+        //남는 자리는 0으로 채움
+        // ex) 2023-02-01  12:08:15 => 2023-02-01 12:08:15
+
+        today=new Date();
+
+
+        document.write(today.getFullYear(),'<br>');
+
+        datetime = String(today.getFullYear()).concat('-',String(today.getMonth()).padStart(2,'0'),'-',String(today.getDay()).padStart(2,'0'));
+        // 이전은 넘버 타입이라 문자타입으로 변환하고 사용 - 아니면 padStart등 사용 불가함 문자형만 가능하기 때문
+
+        datetime=String(datetime).concat(
+            ' ', String(today.getHours()).padStart(2,0),':',
+            String(today.getMinutes()).padStart(2,'0'),':',
+            String(today.getSeconds()).padStart(2,'0')
+        );
+
+
+        document.write(datetime,'<br>');
+
+    </script>
+    <script>
+        //ex)파일명이 abc.123.png 일 때,
+        //파일 이름과 확장자로 분리하세요
+        //abc.123.png => abc.123  /  png
+
+        /*방법1.*/
+        /*let file='abc.123.png';
+        let filename=file.slice(0,-4);
+        let fileex=file.slice(8);
+
+        document.write(filename,'/',fileex,'<br>');
+        document.write('<br>');*/
+
+        /*방법2.*/
+        /*let fullname= 'abc.123.png';
+
+        let fname= fullname.split('.')[0] +'.'+fullname.split('.')[1];
+        let fext = fullname.split('.')[2];
+
+        document.write(fname,'/',fext,'<br>');*/
+
+        /*방법3.*/
+        let fullname= 'abc.123.png';
+        let fname= fullname.slice(0,fullname.lastIndexOf('.'));
+        let fext = fullname.slice(fullname.lastIndexOf('.')+1);
+        document.write(fname,'/',fext,'<br>');
+
+    </script>
+
+    <script>
+        // 주민번호를 하나 입력받아
+        // 올바른 주민번호인지 여부를 출력하는 함수 작성
+
+        // 주민번호 검증 알고리즘
+        // 1) 주민번호 앞부터 12자리(지역번호까지)까지
+        //    각 자리를 2~9까지 곱한다.
+        // 2) 계산되어 나온 숫자를 모두 더한다.
+        // 3) 더한 숫자를 11로 나눈 나머지를 구한다.
+        // 4) 11에서 나머지를 뺀 값의 마지막 숫자와
+        //    13번째 숫자의 일치여부 확인
+
+        // 1  2  3  4  5  6  -  1  2  3  4  5  6      7
+        // 2  3  4  5  6  7     8  9  2  3  4  5
+        // 2  6 12 20 30 42     8 18  6 12 20 30
+        // ? == 7
+
+
+
+    </script>
+
+
+
+
+
+
+</body>
+</html>
