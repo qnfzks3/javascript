@@ -87,7 +87,7 @@
       //resizeTo(너비 , 높이)
 
       let makeWin2 = ()=>{
-        mywin = window.open('about:blank',null,'popup,width=300 , height=300');   //about:blank 빈 문서 생성
+        mywin = window.open('about:blank',null,'popup',width=300 , height=300);   //about:blank 빈 문서 생성
       };   // 실행 시킨 사이트와 새창 사이트의 주소가 다르면 보안이 적용돼어 보안상의 이유로 막혀있다. 자바스크립트로 제어할수없다.
       let movWin = ()=>{
         mywin.moveTo(500,500);                                                //moveTo : 절대좌표 , moveBy : 상대좌표 이동
@@ -112,8 +112,8 @@
 
       //임의의 위치로 창을 옮김
       let moveWin=()=>{
-          let x= Math.floor(Math.random()*1920);
-          let y= Math.floor(Math.random()*1080);
+          let x= Math.floor(Math.random()*1920);  //랜덤 범위 선정  0~ 1920
+          let y= Math.floor(Math.random()*1080);  // 랜덤 범위 성정 0~ 1080
           mywin.moveTo(x,y);
       };
 
@@ -210,11 +210,14 @@
     <p>접속중인 크라이언트의 다양한 정보를 알아낼 수 있음</p>
 
     <script>
-        let appname = navigator.appName;
-        let codename=navigator.appCodeName;
-        let appver= navigator.appVersion;
-        let ua = navigator.userAgent;
-        let pf= navigator.platform;
+
+        //보통 이렇게 보고 통계현황을 본다. 이 사이트 이용자들이 어떤 플랫폼을 사용하는지 통계 데이터 수집용
+
+        let appname = navigator.appName;           // 브라우저 이름
+        let codename=navigator.appCodeName;         // 브라우저 코드이름
+        let appver= navigator.appVersion;       //브라우저 버전
+        let ua = navigator.userAgent;       // 유저의 전체정보
+        let pf= navigator.platform;     //운영체제 및 시스템 환경 조회
 
         document.write(appname,'<br>');
         document.write(codename,'<br>');
@@ -224,8 +227,6 @@
 
     </script>
 
-
-    <p> </p>
 
 
 
