@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트 브라우져 객체 </title>
+</head>
+<body>
+    <h1>자바스크립트 브라우져 객체 </h1>
+    <h2>개요</h2>
+    <p>웹브라우져의 여러 구성요소들을 객체형태로 구현해서 자바스크립트로 제어할 수 있도록 만들어 놓은 것</p>
+    <p>BOM은 W3C의 표준모델은 아님</p>
+    <p>따라서, 브라우저 제조사마다 구현방식이 달라 특정부분은 서로 호환되지 않는 것도 존재</p>
+
+    <h2>window객체</h2>
+    <p>웹브라우저의 창을 의미하는 객체</p>
+    <p>innerHeight, innerWidth : 브라우져의 뷰포트 크기를 의미하는 속성</p>
+    <script>
+      //confirm : 예,아니오를 선택해서 결과 출력
+      //alert : 간단한 경고창 출력
+      //prompt : 사용자로부터 값을 입력 받는 창 표시
+
+      let yesno = window.confirm('자바스크립트를 좋아하시나요??');
+
+      //if (yesno == true) 이것과 동일함
+      if (yesno)
+        document.write('정말요?','<br>');
+
+    </script>
+
+    <script>
+      //window.innerWidth : 창 테두리 제외 뷰포트 크기 - padding 비슷한 느낌 - 보통 이걸로 봐도 됨
+      // document.documentElement.clientWidth : innerWidth 에서 스크롤바 제외 뷰포트 크기
+      //document.body.clientWidth
+
+      let iw = window.innerWidth ||
+              document.documentElement.clientWidth ||
+              document.body.clientWidth ;
+      //브라우져 크기를 알려줌 가로 세로
+      let ih = window.innerHeight ||
+              document.documentElement.clientHeight ||
+              document.body.clientHeight;
+
+      document.write('뷰포트크기 ',iw,'/',ih,'<br>')
+
+    </script>
+
+    <h2>문서 열기 / 닫기</h2>
+    <p>window객체의 open함수를 이용해서 지정한 문서를
+      새창이나 새로운 탭에 띄울수 있음</p>
+    <p>또한, window객체의 close함수를 이용하면
+      띄워진 창이나 탭을 닫을 수 있음</p>
+    <p>창 생성시 창에 관한 속성(크기,너비등)을 설정하면
+      탭으로 생성되지 않고 독립적인 창으로 생성됨</p>
+    <p>주 브라우저의 url과 새 창의 url이 동일하지 않을 경우
+      CSRF 와 CORS 보안 위배 발생 가능성이 존재!
+      (동일 출처 위반)</p>
+
+    <div>
+      <button type="button" onclick="makeWin()"> 새창 띄우기</button>
+      <button type="button" onclick="rmvWin()"> 띄운 창 닫기</button>
+    </div>
+    <script>
+      let mywin = null;
+
+      let makeWin=()=>{
+        //window.open(문서이름);
+        mywin=window.open('01hellojs.html');    //버튼을 누르면 01hellojs.html을 여는걸 mywin에 담아둔다.
+      };
+      let rmvWin = ()=>{
+        mywin.close();
+      };
+
+    </script>
+
+    <h2>창 조작 </h2>
+    <p>resizeTo : 생성한 창의 크기 변경</p>
+    <p>moveTo : 생성한 창의 위치 변경</p>
+
+    <div>
+      <button type="button" onclick="makeWin2()"> 새창 띄우기</button>
+      <button type="button" onclick="movWin()"> 창 이동시키기</button>
+      <button type="button" onclick="rszWin()"> 창 크기바꾸기</button>
+    </div>
+    <script>
+      // window.open(문서명, null, 이름, 너비, 높이, 옵션)
+      // moveTo(x좌표, y좌표)
+      //resizeTo(너비 , 높이)
+
+      let makeWin2 = ()=>{
+        mywin = window.open('about:blank',null,'popup,width=300 , height=300');   //about:blank 빈 문서 생성
+      };   // 실행 시킨 사이트와 새창 사이트의 주소가 다르면 보안이 적용돼어 보안상의 이유로 막혀있다. 자바스크립트로 제어할수없다.
+      let movWin = ()=>{
+        mywin.moveTo(500,500);                                                //moveTo : 절대좌표 , moveBy : 상대좌표 이동
+      };
+      let rszWin = ()=>{
+        mywin.resizeTo(700,100);                                                // 창의 크기 지정 가로 700 세로 100
+      };
+
+    </script>
+    <h2>랜덤 창 띄우기</h2>
+
+    <div>
+      <button type="button" onclick="startRndWin()"> 랜덤창 시작!</button>
+      <button type="button" onclick="stopRndWin()"> 랜덤창 중지!</button>
+    </div>
+    <script>
+        let intv = null;
+
+      // 새창을 하나 띄운 뒤, 임의의 위치로 창을 옮기거나
+      //임의의 수치로 창의 크기를 변경하는 함수
+
+
+      //임의의 위치로 창을 옮김
+      let moveWin=()=>{
+          let x= Math.floor(Math.random()*1920);
+          let y= Math.floor(Math.random()*1080);
+          mywin.moveTo(x,y);
+      };
+
+      //임의의 크기로 창을 변경
+      let resizeWin=()=>{
+          let w= Math.floor(Math.random()*300);
+          let h= Math.floor(Math.random()*300);
+          mywin.resizeTo(w,h);
+      };
+
+      let startRndWin=()=>{
+          makeWin2();
+          intv = setInterval(()=>{
+              moveWin();
+              resizeWin();
+              },1000); // interval은 몇(1초에 1000ms) 초마다 아래 적은 것을 들 실행시키는 함수
+
+      };
+      let stopRndWin=()=>{
+          clearInterval(intv);
+          mywin.close();
+      };
+
+    </script>
+    <h2> screen</h2>
+    <p>사용자 디스플레이에 관한 정보를 다루는 객체</p>
+
+    <p>width, height : 사용자 디스플레이의 실제 해상도 크기</p>
+    <p>availWidth, availHeight : 사용자 디스플레이의 실제 해상도 중
+        사용자가 사용가능한 화면의 최대 크기 </p>
+
+    <script>
+        document.write(screen.width,'/',screen.height,'<br>');
+        document.write(screen.availWidth,'/',screen.availHeight,'<br>');
+    </script>
+
+    <div>
+        <button type="button" onclick="center()">새창 띄우기1</button>
+        <button type="button" onclick="centerWin()">새창 띄우기2</button>
+    </div>
+    <script>
+        //창크기 : 300x300
+
+        let centerWin=()=>{
+            let sx= screen.width;
+            let sy=screen.height;
+
+            let cx= (sx/2) -(300/2);    //그냥 let cx=sx/2 로 하면 위치가 잘 안나온다. 그래서 전체 브라우져 크기의 중간 만큼 간후에 창 크기만큼 뺀다.
+            let cy=(sy/2)-(300/2);
+            makeWin2();
+            mywin.moveTo(cx,cy);
+
+        };
+
+
+
+        let center=()=>{
+            newcenter = window.open('about:blank',null,'center,width=300 , height=300');
+            newcenter.moveTo(screen.availWidth/2 , screen.availHeight/3);
+
+        };
+
+
+
+    </script>
+
+    <h2>location</h2>
+    <p> 현재브라우져에 표시된 문서의 url을 변경하거나 url에 대한 정보를 얻을 수 있음</p>
+    <p>  </p>
+    <script>
+        let url = location.href; // 브라우저 열었을때 현재 여기 주소 출력
+
+        document.write(url,'<br>'); // 현재 주소 출력 href
+        document.write(location.hostname,'<br>'); //현재 주소의 이름 출력   -->서버명
+        document.write(location.pathname,'<br>'); // 현재 주소의 경로 출력  -->경로명
+        document.write(location.search,'<br>');   // 현재 주소 검색        -->질의문자열
+    </script>
+
+    <div>
+        <button type="button" onclick="go2gle()">구글로 이동</button>
+        <button type="button" onclick="go2any()">오늘의 추천사이트</button>
+    </div>
+    <script>
+        let go2gle = ()=>{
+            location.href ='http://google.co.kr';
+        };
+        let go2any = ()=>{
+            const luckys= ['naver.com','daum.net','danawa.co.kr','ppomppu.co.kr','auction.co.kr'];
+            let idx= Math.floor(Math.random()*5);
+            location.href='http://'+luckys[idx];
+        };
+    </script>
+    <h2>navigator</h2>
+    <p>접속중인 크라이언트의 다양한 정보를 알아낼 수 있음</p>
+
+    <script>
+        let appname = navigator.appName;
+        let codename=navigator.appCodeName;
+        let appver= navigator.appVersion;
+        let ua = navigator.userAgent;
+        let pf= navigator.platform;
+
+        document.write(appname,'<br>');
+        document.write(codename,'<br>');
+        document.write(appver,'<br>');
+        document.write(ua,'<br>');
+        document.write(pf,'<br>');
+
+    </script>
+
+
+    <p> </p>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
