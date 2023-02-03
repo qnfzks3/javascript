@@ -77,7 +77,321 @@
 
 
 
-    <p> </p>
+    <p>여러 요소들을 태그이름으로 찾으려면
+        document.getElementsByTagName를 사용,
+        반환값은 HTMLCollection객체(유사배열)에 저장</p>  <!--배열은 배열이지만 html 형태를 가지고 있는 배열-->
+
+    <p>여러 요소들을 클래스이름으로 찾으려면
+        document.getElementsByClassName를 사용, 반환값은 HTMLCollection객체(유사배열)에 저장</p>
+
+    <p>여러 요소들을 클래스 선택자로 찾으려면
+        document.querySelectorAll을 사용,
+        반환값은 NodeList객체(유사리스트)에 저장</p>
+
+
+
+    <div>
+        <p  class="two">시간은 금이라구 친구</p>
+        <p  class="two">별의 영역이 광활하다는 건 놀라운 것이 아니다. 인류가 그것을 측정해낸 게 놀랍다</p>
+        <p  class="fourth">어디서도 보지 못했던, 아무도 경험하지 못했던 완전히 새로운 게임</p>
+    </div>
+    <script>
+        //문서 제목title 바꾸기
+        let title = document.getElementsByTagName('title');
+        console.log(title[0].innerText);
+        title[0].innerText='Hello, Dom!!'   //문서의 제목을 바꿔봄
+
+        //클래스 이름이 two인 요소들의 스타일 변경
+        let p = document.getElementsByClassName('two');  // two가 두개이기 대문에 배열식으로 들어가졌음
+        console.log(p);
+        p[0].style.color='blue';
+        p[1].style.backgroundColor='yellow';
+
+    </script>
+
+    <div>
+        <p  class="fifth">시간은 금이라구 친구</p>
+        <p  class="fifth">별의 영역이 광활하다는 건 놀라운 것이 아니다. 인류가 그것을 측정해낸 게 놀랍다</p>
+        <p  class="sixth">어디서도 보지 못했던, 아무도 경험하지 못했던 완전히 새로운 게임</p>
+    </div>
+
+    <script>
+
+        //.fifth 하나만 선택
+        let fifth= document.querySelector('.fifth');   // 클라스 선택자 .  아이디 선택자 # 로 시작함
+        console.log(fifth);
+        fifth.style.textDecoration='underline';
+
+
+        //.fifth 모두 선택 -or 사용
+        fifth = document.querySelector('.fifth');
+        console.log(fifth);
+        /*fifth[0].style.fontStyle = 'italic';
+        fifth[1].style.fontStyle = 'italic';*/
+
+    </script>
+    <h2>속성 다루기</h2>
+    <p>특정 요소의 속성을 다룰려면 setAttribute를 사용</p>
+
+    <div> <img id="img1"></div>
+    <div><button type="button" onclick="showing()">이미지</button> </div>
+
+    <script>
+        let showing = ()=>{
+            let img = document.querySelector('#img1');
+            img.setAttribute('src','img/smile.png' );    // 속성명 , 파일명     setAttribute는 a=1 ;
+            img.setAttribute('width','50%' );
+            img.setAttribute('height','50%' );
+
+            /* width="50%"; height="50%"*/
+
+        };
+    </script>
+
+
+    <h2>새로운 요소 추가 </h2>
+    <p>태그이름을 인자로 전달해서 문서상에 새로운 요소를 생성하려면 createElement를 사용</p>
+    <p>지정한 요소를 특정 요소의 자식 요소로 추가하려면 appendChild를 사용</p>
+    <p>텍스트 노드를 추가하려면 createTextNode를 사용</p>
+
+
+    <div id="img2"></div> <!--부모 div--> <!-- 자식 img -->  <!--appendChild-->
+    <div><button type="button" onclick="showimg2()">이미지2</button> </div>
+
+    <script>
+        let showimg2=()=>{
+            let div = document.querySelector('#img2');   // 변수 div는 위에있는(div img2)다
+            console.log(div.firstChild);                 //이미지를 추가하기 전에는 null -> 버튼을 누르기 전에 자식은 없음
+            let img = document.createElement('img');     // img는 새로운 요소 img 이다.
+            div.appendChild(img);                        // 이 div안에 요소 img를 넣어라
+            img.setAttribute('src','img/R.png' );        // 위에 img1버튼의 경우는 직접 자식 넣어줬지만
+            img.setAttribute('width','50%' );            // 지금 두번째 버튼의 경우는 함수안에 자식을 생성하라 정의 하고 시작
+            img.setAttribute('height','50%' );
+            console.log(div.firstChild);                  //이경우 버튼을 누를때마다 div 안에 요소를 계속해서 추가하기 때문에 누를 때마다 그림이 계속 늘어난다.
+                                                        //그러니 null일때만 사진을 출력하게 하면 1번만 사진을 출력할 것이다.
+
+        };
+
+    </script>
+
+    <h2> 성적 결과 리스트</h2>
+    <div id="sj"> </div>
+
+    <script>
+        //table , tr , th ,td 태그등을 이용해서
+        // 이름 , 국어 , 영어 ,수학 성적을 목록 형태로 출력
+
+        let thdata=['이름','국어','영어','수학'];
+        let sjdata=['지현',98,98,94]
+
+        //성적테이블이 삽입될 위치 잡기
+        let sj=document.querySelector('#sj');
+
+
+        //테이블 생성
+        let table = document.createElement('table');
+        table.setAttribute('border','1');
+        table.setAttribute('width','500px');
+        table.setAttribute('cellspacing','0');
+        table.setAttribute('cellpadding','10');
+
+       /* //테이블의 제목행 생성
+        //<tr><th>이름</th><th>이름</th><th>이름</th><th>이름</th></tr>
+        let tr = document.createElement('tr');
+        let th = document.createElement('th');
+        let txt = document.createTextNode('이름')
+        th.appendChild(txt);
+        tr.appendChild(th);
+        table.appendChild(tr);
+
+
+
+        tr = document.createElement('tr');
+        th = document.createElement('th');
+        txt = document.createTextNode('국어')
+        th.appendChild(txt);
+        tr.appendChild(th);
+        table.appendChild(tr);
+
+
+
+        tr = document.createElement('tr');
+        th = document.createElement('th');
+        txt = document.createTextNode('영어')
+        th.appendChild(txt);
+        tr.appendChild(th);
+        table.appendChild(tr);
+
+
+        tr = document.createElement('tr');
+        th = document.createElement('th');
+        txt = document.createTextNode('수학')
+        th.appendChild(txt);
+        tr.appendChild(th);
+        table.appendChild(tr);*/
+
+
+        //이렇게 일일이 할수 없으니깐 다시 ! 반복문으로 해보자
+
+        let tr = document.createElement('tr');    //먼저 정의된 테이블과 tr 을 정의 후에 그안에 th를 적는다.
+        for(let val of thdata){                     //thdata 안의 값만큼 반복 한번 반복할때마다 thdata 값이 val 안에 들어감
+            let th=document.createElement('th');     // 요소 th 생성
+            let txt=document.createTextNode(val);    // 요소 val 생성
+            th.appendChild(txt);                     // 생성한 txt를 th 안에 넣어줌  (자식으로 만듬)
+            tr.appendChild(th)                       // 생성한 th를 tr에 넣어줌        (자식으로 만듬)
+        }
+        table.appendChild(tr);                      // 위에 tr을 테이블에 넣어줌           (자식으로 만듬)
+
+
+        //생성한 태그를 sj에 삽입
+        sj.appendChild(table);
+
+    </script>
+    <script>
+        //테이블의 본문행 생성
+        //<tr><th>지현</th><th>99</th><th>98</th><th>84</th></tr>
+
+
+        tr = document.createElement('tr');
+        for(let val of sjdata){
+            let th=document.createElement('th');
+            th.setAttribute('align','center');
+            let txt=document.createTextNode(val);
+            th.appendChild(txt);
+            tr.appendChild(th)
+        }
+        table.appendChild(tr);
+
+
+        //생성한 태그를 sj에 삽입
+        sj.appendChild(table);
+
+    </script>
+
+    <h2>시/구/동  검색</h2>
+    <div>
+
+        <select id="sido" onchange="getGugun()"></select>    <!--기본값이 광역시 라고 적혀있는데 다른걸로 선택했을시 선택한 값으로 변경-->
+        <select id="gugun" onchange="getDong()"></select>
+        <select id="dong" onchange="getAddr()"></select>
+
+    </div>
+    <script>
+
+        let sidodata=['서울 특별시','부산광역시','인천광역시','대전광역시','제주자치도'];
+
+        let gugundata=[
+            ['강남구', '서초구', '종로구', '송파구'],
+            ['과천시', '광명시', '성남분당구'],
+            ['연수구'],
+            ['부산진구'],
+            ['서귀포시']
+        ];
+
+        let dongdata = [
+            [['논현동','대치동','삼성동'], ['반포동','방배동','양재동'],['광희동','명동','충무로'],['가락동','석촌동']],
+            [['과천동'],['광명동'],['대장동']],
+            [['연수동']],
+            [['개금동','가야동']],
+            [['강정동']]
+        ];
+
+
+
+        let sido=document.querySelector('#sido');  //전체 틀을 위에서 가져오기  셀렉이나 div 같은
+        let gugun=document.querySelector('#gugun');
+        let dong=document.querySelector('#dong');
+
+        let guguntitle=(parent,title)=>{
+            let opt = document.createElement('option');
+            let txt = document.createTextNode(title);
+            opt.appendChild(txt);
+            parent.appendChild(opt);
+
+        };
+
+
+
+        let getSido =()=>{
+
+            //<option>-광역시-</option>
+
+            let opt = document.createElement('option');   //option 은 li
+            let txt = document.createTextNode('-광역시-');
+            opt.appendChild(txt);
+            sido.appendChild(opt);
+
+            //<option>-서울특별시-</option>
+            //<option>-경기도-</option>
+            //...
+            //<option>-제주자치도-</option>
+            for (let val of sidodata){
+                let opt = document.createElement('option');
+                let txt = document.createTextNode(val);
+                opt.appendChild(txt);
+                sido.appendChild(opt);
+            }
+            opt = document.createElement('option');
+            txt = document.createTextNode('-시/군/구-');
+            opt.appendChild(txt);
+            gugun.appendChild(opt);
+
+            opt = document.createElement('option');
+            txt = document.createTextNode('-읍/면/동-');
+            opt.appendChild(txt);
+            dong.appendChild(opt);
+
+
+
+
+        };
+        let getGugun =()=>{
+            console.log(sido.value,sido.selectedIndex);
+
+            while (gugun.firstChild){ //시군구에 항목이 있다면 -첫번째 자식이 있냐 없냐 잇으면 true 없으면 false 처음 한거부터 지우고 들어감 마지막지우고 싶으면 lastchild
+                gugun.removeChild(gugun.firstChild);
+
+            }
+            //선택한 시도로 시군구 항목 추가
+            opt = document.createElement('option');
+            txt = document.createTextNode('-시/군/구-');
+            opt.appendChild(txt);
+            gugun.appendChild(opt);
+
+
+            //<option>-선택한 시의 구군들-</option>
+            for (let val of gugundata[sido.selectedIndex-1]){
+                let opt = document.createElement('option');
+                let txt = document.createTextNode(val);
+                opt.appendChild(txt);
+                gugun.appendChild(opt);
+
+            }
+
+
+        };
+        let getDong =()=>{
+
+
+
+        };
+        let getAddr =()=>{
+
+
+        };
+
+
+
+
+
+
+
+        getSido();
+
+    </script>
+
+
+
 
 </body>
 </html>
