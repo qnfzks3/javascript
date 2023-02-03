@@ -274,6 +274,7 @@
         <select id="sido" onchange="getGugun()"></select>    <!--기본값이 광역시 라고 적혀있는데 다른걸로 선택했을시 선택한 값으로 변경-->
         <select id="gugun" onchange="getDong()"></select>
         <select id="dong" onchange="getAddr()"></select>
+        <p id="myaddr"> </p>
 
     </div>
     <script>
@@ -302,7 +303,7 @@
         let gugun=document.querySelector('#gugun');
         let dong=document.querySelector('#dong');
 
-        let guguntitle=(parent,title)=>{
+        let addrTitle=(parent,title)=>{
             let opt = document.createElement('option');
             let txt = document.createTextNode(title);
             opt.appendChild(txt);
@@ -315,11 +316,9 @@
         let getSido =()=>{
 
             //<option>-광역시-</option>
+            addrTitle(sido,'-광역시-');
 
-            let opt = document.createElement('option');   //option 은 li
-            let txt = document.createTextNode('-광역시-');
-            opt.appendChild(txt);
-            sido.appendChild(opt);
+
 
             //<option>-서울특별시-</option>
             //<option>-경기도-</option>
@@ -331,22 +330,15 @@
                 opt.appendChild(txt);
                 sido.appendChild(opt);
             }
-            opt = document.createElement('option');
-            txt = document.createTextNode('-시/군/구-');
-            opt.appendChild(txt);
-            gugun.appendChild(opt);
 
-            opt = document.createElement('option');
-            txt = document.createTextNode('-읍/면/동-');
-            opt.appendChild(txt);
-            dong.appendChild(opt);
-
-
+            addrTitle(gugun,'-시/군/구-');
+            addrTitle(dong,'-읍/면/동-');
 
 
         };
         let getGugun =()=>{
             console.log(sido.value,sido.selectedIndex);
+
 
             while (gugun.firstChild){ //시군구에 항목이 있다면 -첫번째 자식이 있냐 없냐 잇으면 true 없으면 false 처음 한거부터 지우고 들어감 마지막지우고 싶으면 lastchild
                 gugun.removeChild(gugun.firstChild);
@@ -360,24 +352,53 @@
 
 
             //<option>-선택한 시의 구군들-</option>
-            for (let val of gugundata[sido.selectedIndex-1]){
-                let opt = document.createElement('option');
-                let txt = document.createTextNode(val);
-                opt.appendChild(txt);
-                gugun.appendChild(opt);
+            if (sido.selectedIndex>0){
+                for (let val of gugundata[sido.selectedIndex-1]){
+                    let opt = document.createElement('option');
+                    let txt = document.createTextNode(val);
+                    opt.appendChild(txt);
+                    gugun.appendChild(opt);
+
+                }
 
             }
 
 
+
         };
         let getDong =()=>{
+            console.log([sido.selectedIndex-1][gugun.selectedIndex-1]);
+
+            while (gugun.lastChild){
+                gugun.removeChild(gugun.firstChild);
+
+            }
+            addrTitle(dong,'-읍/면/동-')
+
+
+
+            if (gugun.selectedIndex>0){
+                if (sido.selectedIndex>0){
+                    for (let val of dongdata[sido.selectedIndex-1][gugun.selectedIndex-1]){
+                        let opt = document.createElement('option');
+                        let txt = document.createTextNode(val);
+                        opt.appendChild(txt);
+                        dong.appendChild(opt);
+                    }
+                }
+            }
+
 
 
 
         };
         let getAddr =()=>{
+            let result=`선택한 주소 :${sido.value} ${gugun.value} ${dong.value}`;
 
+            let myaddr=document.querySelector('#myaddr');
 
+           /*myaddr.innerHTML=result;*/
+               myaddr.innerText=result;
         };
 
 
@@ -390,6 +411,34 @@
 
     </script>
 
+
+    <H2>요소 내용 바꾸기</H2>
+    <p>innerHTML : html 요소내에 마크업을 포함한 무언가를 삽입/수정/제거할때 사용</p>
+    <p>textContent : 요소의 텍스트 컨텐츠를 가져오거나 변경할때 사용</p>
+
+
+    <div>
+        <span id="msg1">-1-</span>
+        <span id="msg2">-2-</span>
+        <p>게임목록</p>
+        <ul id="games"></ul>
+    </div>
+    <script>
+        let msg1=document.querySelector('#msg1');
+        let msg2=document.querySelector('#msg2');
+        let games=document.querySelector('#games');
+
+        msg1.innerHTML='<p>Hello ,  World!!</p>';
+        //msg2.innerText='<p>Hello ,  World!!</p>';
+        msg2.innerContent='<p>Hello ,  World!!</p>';
+
+
+        games.innerHTML='<li>디아블로</li>';
+
+
+
+
+    </script>
 
 
 
