@@ -70,13 +70,14 @@
                     continue;
                 }
                 makeopt(sido,col);                      // 옵션을 파일 안에있는 데이터를 텍스트에 넣기
-
             }
+
+
         } //setSido
 
 
         let getSido = ()=>{
-          let req = new XMLHttpRequest();                           //이걸 언제나 할 수 있도록 해야한다.
+          /*let req = new XMLHttpRequest();                           //이걸 언제나 할 수 있도록 해야한다.
           req.onreadystatechange = () =>{
               if(req.readyState == 4 && req.status == 200){
                   //console.log(req.responseText);
@@ -85,26 +86,35 @@
               }
           };
           req.open('get',url1);
-          req.send();
-      };
+          req.send();*/
+
+            fetch(url1)                                //let cols= sidos.split(','); 이게 기본적으로 들어있음
+                .then(response => response.text())     //데이터에 응답을 text로 대이터로 가져온후 setSido 에 넣는다.
+                .then(text => setSido(text))           //
+
+
+        };
 
         //시도를 선택했을 때 처리
 
-        sido.addEventListener('change',()=>{
+        sido.addEventListener('change',()=>{                       // sido(select) 가 변경 되면 아래 함수를 시작해라
             let qry = '?sido='+sido.value;                       //sido.value 는 빈칸을 우리가 선택하면 그 선택한 값
 
             //선택한 시도가 '-광역시-' 라면 함수 실행 중지
             if (sido.selectedIndex==0) return;                     // 만약 sido(id)의 값이 0번째(광역시)라면 리턴 - 나가라
 
-            let req = new XMLHttpRequest();
+            /*let req = new XMLHttpRequest();
             req.onreadystatechange = () =>{
-                if(req.readyState == 4 && req.status == 200){
+                if(req.readyState == 4 && req.status == 200){    //
                     console.log(req.responseText);
                     setGugun(req.responseText);
                 }
             };
             req.open('get',url2+qry);
-            req.send();
+            req.send();*/
+            fetch(url2+qry)
+                .then(response => response.text())
+                .then(text => setGugun(text))
         });
 
       // 2. 구군출력
@@ -129,10 +139,10 @@
         gugun.addEventListener('change',()=>{
             let qry = `?sido=${sido.value}&gugun=${gugun.value}`;
 
-            //선택한 시도가 '-광역시-' 라면 함수 실행 중지
+            //선택한 시군구가 '-시/군/구-' 라면 함수 실행 중지
             if (gugun.selectedIndex==0) return;
 
-            let req = new XMLHttpRequest();
+            /*let req = new XMLHttpRequest();
             req.onreadystatechange = () =>{
                 if(req.readyState == 4 && req.status == 200){
                     console.log(req.responseText);
@@ -140,9 +150,17 @@
                 }
             };
             req.open('get',url3+qry);
-            req.send();
+            req.send();*/
+            fetch(url3+qry)
+                .then(response => response.text())
+                .then(text => setDong(text))
+
+
 
         });
+
+
+
 
 
         const setDong = (dongs) => {
@@ -159,6 +177,18 @@
             }
 
         };
+
+        //읍면동을 선택했을 때 이벤트 처리
+
+        dong.addEventListener('change',()=>{
+            if (dong.selectedIndex==0) return;
+            let msg=`${sido.value} ${gugun.value} ${dong.value}`;
+
+            alert(msg);
+
+        });
+
+
 
 
 
