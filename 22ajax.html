@@ -65,32 +65,34 @@
 <div>
     <input type="text" id="userid">
     <button type="button" id="checkbtn">아이디 중복검사</button>
-    <button type="button" id="check2btn">아이디 중복검사2</button>
+    <button type="button" id="check2btn">아이디 중복검사2</button>             <!--1. 첫번재로 어떤 걸 넣을 지 버튼, 텍스트창 등 만들고 id 혹은 class 지정-->
     <p id="msg2"></p>
 </div>
 
 <script>
     let userid = document.querySelector('#userid');
-    let msg2 = document.querySelector('#msg2');
+    let msg2 = document.querySelector('#msg2');                     // 2. 지정된 id를 가져온다.
 
-    let isExistUid = (ruid) => {
-        let isExist = false;
+    let isExistUid = (ruid) => {                                    //3. 다음 지정된 아이디들이 어떻게 작동할지 정한다.
+        let isExist = false;                                        //3-1. 아이디가 존재하는지 존재하지 않는지 여부 확인
         msg2.textContent = '사용가능한 아이디';
         msg2.style.color = 'blue';
 
         if (userid.value == ruid) { isExist = true; }
 
-        if (isExist) {
-            msg2.textContent = '이미 사용중인 아이디';
+        if (isExist) {                                               // 이 함수는 유져 아이디 값(userid.value)이 매개변수req.responseText(서버에서 응답한 값) 이라면
+            msg2.textContent = '이미 사용중인 아이디';                  // 참으로 이미 사용중인 아이디를 msg2에 출력하도록 만든 함수
             msg2.style.color = 'red';
         }
     };
 
-    let checkbtn = document.querySelector('#checkbtn');
-    checkbtn.addEventListener('click', () => {
-        let req = new XMLHttpRequest();
-        req.onreadystatechange = () => {
-            if (req.readyState == 4 && req.status == 200) {
+    let checkbtn = document.querySelector('#checkbtn');       // 4. 다음 클릭했을 시 이벤트 발생하도록 버튼id를 checkbtn로 가져온다.
+
+
+    checkbtn.addEventListener('click', () => {                 //5. 버튼checkbtn를 클릭시 이벤트 발생 - 위에서 작동시키려고 만든 함수 isExistUid 사용
+        let req = new XMLHttpRequest();                        //5-1. ajax 시작 new XMLHttpRequest() 을 req로 정의
+        req.onreadystatechange = () => {                       //5-2.  onreadystatechange = () => {}는 ajax 콜백 함수 - new XMLHttpRequest()의 상태(status,readystate)가 바뀔 때마다 함수 실행
+            if (req.readyState == 4 && req.status == 200) {    // new XMLHttpRequest()의 상태(status,readystate)가 바뀔 때마다 함수 실행
                 isExistUid(req.responseText);
             } else {
                 console.log(req.readyState, req.status);
@@ -99,6 +101,13 @@
         req.open('get', 'server/member.txt');
         req.send();
     });
+
+
+
+
+
+
+
 
     let isExistUid2 = (ruid) => {
         let isExist = false;
