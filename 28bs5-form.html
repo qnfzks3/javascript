@@ -205,11 +205,10 @@
       */
 
       (() => {
-        const forms = document.querySelectorAll('.needs-validation')
+        const form = document.querySelector('.needs-validation')
 
-        Array.from(forms).forEach(form => {
           form.addEventListener('submit', e => {
-            console.log(form.checkValidity());            //제출 성공했는지 여부 콘솔 확인
+            //console.log(form.checkValidity());            //제출 성공했는지 여부 콘솔 확인
             if (!form.checkValidity()) {
               e.preventDefault()
               e.stopPropagation()
@@ -217,7 +216,7 @@
 
             form.classList.add('was-validated')   //성공 하면
           }, false);  //addEventListener
-        }); //forEach
+
       })();  //https://getbootstrap.com/docs/5.3/forms/validation/ 에 있는 코드 그대로 가져와서 쓰면 붓스트랩 내용 그대로 사용가능하다.
 
 
