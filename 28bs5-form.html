@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bs5/bootstrap.min.css" rel="stylesheet">
+    <title>부트스트랩5 - 폼 다루기 </title>
+</head>
+<body>
+
+    <h1>부트스트랩5 - 폼 다루기 </h1>
+    <h2>기본 예제 </h2>
+    <p>부트스트랩으로 폼을 디자인하려면 form-label, form-control,form-check-label,form-check-input등을 사용하면 됨</p>
+    <p> 클라스는 여기서 클라스는 크기 지정 , 및 어떤 플랫폼으로 지정할 지를 선택한다.  클라스로 그 플랫폼의 크기를 지정하고 </p>
+
+    <!--col-md-1은"md" (medium) 기준으로 1분할로 나눠진 구역을 나타냅니다.
+    즉, 이 요소는 미디엄 화면 크기에서 1/12 위치로 분할의 너비를 가지게 됩니다.-->
+
+    <from>
+
+      <div class="mb-3">
+        <label for="uid" class="form-label">아이디</label>
+        <input type="text" id="uid" name="uid" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="pwd" class="form-label">비밀번호</label>
+        <input type="text" id="pwd" name="pwd" class="form-control">         <!--라벨은 보통 id 와 for 로 이어주어야한다. radio의 경우는 하나만 선택이 가능하기에 한번만 해도됨-->
+      </div>
+      <div class="mb-3">
+        <input type="checkbox" id="isLogin" class="form-check-input" >
+        <label for="isLogin" class="form-check-label">로그인 저장하기</label>          <!--form-check-label은 체크할 때 파란색으로 모양있도록 -->
+      </div>
+
+      <div class="mb-3">
+        <button type="button" class="btn btn-dark">로그인</button>   <!--btn 박스 모양 지정-->
+        <button type="button" class="btn btn-dark">아이디/비밀번호 찾기</button>
+
+      </div>
+
+   <!--부트스트랩은 버전을 언제나 다르게 사용할 수 있기 때문에 홈페이지 접속해서 낮은 버전으로 사용할 수 있다. -->
+
+    </from>
+
+    <h2> 폼 요소 한줄로 나타내기 </h2>
+
+    <form>
+
+      <div class="row ">                                                      <!--지금처럼 div로 묶어야 한줄로 나온다.-->
+        <label for="uid2" class="form-label col-md-1 text-end">아이디</label>                             <!--라벨은 12/1 의 크기를 가지며 라벨 안에 글은 맨 끝으로 이동-->
+        <div class="col-md-9"><input type="text" id="uid2" name="uid2" class="form-control"></div>
+      </div>
+      <div class="row">
+        <label for="pwd2" class="form-label col-md-1 text-end">비밀번호</label>
+        <div class="col-md-9"><input type="text" id="pwd2" name="pwd2" class="form-control"> </div>
+      </div>
+      <div class="row">
+        <div>
+          <label class="col-md-1"></label>
+          <input type="checkbox" id="isLogin2" class="form-check-input" >
+          <label for="isLogin2" class="form-check-label">로그인 저장하기</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label class="col-md-2"></label>
+          <button type="button" class="btn btn-dark">로그인</button>
+          <button type="button" class="btn btn-dark">아이디/비밀번호 찾기</button>
+        </div>
+      </div>
+
+      <!--부트스트랩은 버전을 언제나 다르게 사용할 수 있기 때문에 홈페이지 접속해서 낮은 버전으로 사용할 수 있다. -->
+
+    </form>
+
+    <h2> select,check, radio</h2>
+    <form>
+      <div class="row">
+
+        <label for="sido" class="form-label col-md-1 text-end">시도</label>    <!--라벨이 어디를 위한 라벨이야? sido - select-->
+        <div class="col-md-2">
+          <select class="form-select" id="sido">
+            <option>-선택하세요-</option>
+            <option>서울</option>
+            <option>경기</option>
+            <option>인천</option>
+            <option>제주</option>
+          </select>
+        </div>
+      </div> <!--시도 select-->
+
+      <div class="row">
+        <label for="hobby" class="form-label col-md-1 text-end">취미</label>               <!--크기를 지정해 주지 않으면 한줄에 안나온다.-->
+        <div class="col-md-2">
+          <input type="checkbox" class="form-check-input" name="hobby" id="hobby" value="soccer"></input>
+          <label class="form-check-label">축구</label>
+
+          <input type="checkbox" class="form-check-input" name="hobby" value="swim" ></input>
+          <label class="form-check-label">수영</label>
+
+          <input type="checkbox" class="form-check-input" name="hobby" value="trip" ></input>
+          <label class="form-check-label">여행</label>
+        </div>
+      </div> <!--hobby checkbox-->
+
+      <div class="row">
+
+        <label for="gender" class="form-label col-md-1 text-end">성별</label>
+        <div class="col-md-3">
+          <input type="radio" class="form-check-input" id="gender" name="gender" value="male" >
+          <label class="form-check-label">남</label>
+
+          <input type="radio" class="form-check-input" name="gender" value="female" >
+          <label class="form-check-label">여</label>
+
+        </div>
+      </div> <!--gender radio-->
+
+    </form>
+
+    <h2>floating label</h2>
+    <form>
+      <div class="row form-floating">
+        <input type="text" id="fuid" class="form-control" placeholder="아이디">
+        <label for="fuid">아이디</label>
+      </div>
+     <!-- <div class="row form-floating">
+        <input type="text" id="pass" class="form-control" placeholder="비밀번호">
+        <label for="pass">비밀번호</label>
+      </div>-->
+
+      <div class="row form-floating">
+        <input type="text" class="form-control" id="fpwd" name="fpwd" placeholder="비밀번호">         <!--플레이스홀드! 마우스를 비밀번호에 가져다대면 작은 글씨로 플레이스 홀드가 나옴-->
+        <label for="fpwd">비밀번호</label>
+      </div>
+
+    </form>
+
+  <h2>input group</h2>
+  <form>
+    <div class="input-group">
+          <input type="text" class="form-control" name="email1">
+          <span class="input-group-text">@</span>
+          <input type="text" class="form-control" name="email2">
+    </div>
+    <div class = "input-group">
+      <div class="input-group-text">
+        <input type="checkbox" class="form-check-input">
+      </div>
+      <input type="text" class="form-control">
+    </div>
+
+    <div class="input-group">
+      <input type="file" class="form-control">  <!--type="file" 파일을 업로드하는 ui 이며 실제로 업로드한다면 백엔드에서 처리해야한다. 자바스크립트로 조건, 클릭할 시 이벤트 부여-->
+      <button type="button" class="btn btn-success">업로드하기</button>
+    </div>
+  </form>
+
+  <h2>폼 유효성 검사 </h2>
+  <p>html5에서 기본적으로 제공하는 폼 유효성 검사를 novalidate라는 코드로 작동중지 해 둠</p>
+  <p>그런 다음 needs-validation라는 클래스 선택자에 폼 유효성 검사를 수행하는 함수를 이벤트로 등록해 둠</p>
+
+
+  <form class="row needs-validation" novalidate>        <!--만약에 체크가 안됬을 때 체크하라고 경고 하고싶다.하면  novalidate 과 required 사용, novalidate를 지우면 켜짐  -->
+    <div class="col-md-4">
+      <label for="userid" class="form-label">아이디</label>
+      <input type="text" id="userid" name="userid" class="form-control" required>
+    </div>           <!--아이디-->
+    <div class="col-md-4">
+      <label for="userpwd" class="form-label">비밀번호</label>
+      <input type="text" id="userpwd" name="userpwd" class="form-control" required>
+    </div>           <!--비밀번호-->
+
+    <div class="col-md-4">
+      <label for="name" class="form-label">이름</label>
+      <input type="text" id="name" name="name" class="form-control" required>
+    </div>     <!--이름-->
+
+    <div class="col-md-12">
+      <input type="checkbox" class="form-check-input" id="checkagree" required>         <!--required 가 걸려있어서 체크가 안되어있으면 지나갈수가없다.-->
+      <label for="checkagree" class="form-check-label">이용약관에 동의합니다.</label>
+      <div class="invalid-feedback">이용약관에 동의해 주세요!!</div>
+    </div>           <!--이용약관--> <!--이용약관 체크 안하고 실패시 나올 이벤트invalid-feedback-->
+
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-dark">가입하기</button>
+    </div>           <!--버튼-->
+  </form>
+
+
+
+
+
+    <script src="js/bs5/bootstrap.min.js"></script>
+    <script>
+
+      /*
+      (()=>{alert('hello')})();
+      */
+
+      /*
+      함수를 let a = ()=>{alert('hello');};
+      a();
+      이렇게 사용 안하고 변수로 하지않고 그냥 정의와 동시에 바로 실행 하고 싶다면 이렇게 사용한다.
+      */
+
+      (() => {
+        const forms = document.querySelectorAll('.needs-validation')
+
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', e => {
+            console.log(form.checkValidity());            //제출 성공했는지 여부 콘솔 확인
+            if (!form.checkValidity()) {
+              e.preventDefault()
+              e.stopPropagation()
+            }
+
+            form.classList.add('was-validated')   //성공 하면
+          }, false);  //addEventListener
+        }); //forEach
+      })();  //https://getbootstrap.com/docs/5.3/forms/validation/ 에 있는 코드 그대로 가져와서 쓰면 붓스트랩 내용 그대로 사용가능하다.
+
+
+    </script>
+
+</body>
+</html>
